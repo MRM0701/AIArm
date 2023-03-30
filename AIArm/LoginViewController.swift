@@ -38,15 +38,9 @@ class LoginViewController: BaseViewController {
             // Switch to main interface
 //            let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let tabBarController = TabBarController()
-            let personVC = PersonViewController()
-            let moduleAVC = ModuleAViewController()
-            let moduleBVC = ModuleBViewController()
-            let moduleCVC = ModuleCViewController()
-            let nav1 = BaseNavigationController(rootViewController: personVC)
-            let nav2 = BaseNavigationController(rootViewController: moduleAVC)
-            let nav3 = BaseNavigationController(rootViewController: moduleBVC)
-            let nav4 = BaseNavigationController(rootViewController: moduleCVC)
-            tabBarController.viewControllers = [nav1, nav2, nav3, nav4]
+            tabBarController.tabBar.backgroundColor = .white
+            tabBarController.tabBar.barTintColor = .white
+            tabBarController.tabBar.shadowImage = UIImage() //去掉tabbar顶部的细线（阴影效果）
             let array = UIApplication.shared.connectedScenes
             let delegate  = array.first?.delegate as? SceneDelegate
             delegate?.window?.rootViewController = tabBarController

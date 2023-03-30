@@ -11,6 +11,8 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBar.barTintColor = .white
+
         let personVC = PersonViewController()
         personVC.title = "就诊人"
         personVC.tabBarItem = UITabBarItem(title: "就诊人", image: UIImage(named: "person"), selectedImage: UIImage(named: "person_selected"))

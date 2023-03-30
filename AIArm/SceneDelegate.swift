@@ -20,15 +20,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .white
         if UserDefaults.standard.bool(forKey: "isLogin") {
             let tabBarController = TabBarController()
-            let personVC = PersonViewController()
-            let moduleAVC = ModuleAViewController()
-            let moduleBVC = ModuleBViewController()
-            let moduleCVC = ModuleCViewController()
-            let nav1 = BaseNavigationController(rootViewController: personVC)
-            let nav2 = BaseNavigationController(rootViewController: moduleAVC)
-            let nav3 = BaseNavigationController(rootViewController: moduleBVC)
-            let nav4 = BaseNavigationController(rootViewController: moduleCVC)
-            tabBarController.viewControllers = [nav1, nav2, nav3, nav4]
+//            let personVC = PersonViewController()
+//            let moduleAVC = ModuleAViewController()
+//            let moduleBVC = ModuleBViewController()
+//            let moduleCVC = ModuleCViewController()
+//            let nav1 = BaseNavigationController(rootViewController: personVC)
+//            let nav2 = BaseNavigationController(rootViewController: moduleAVC)
+//            let nav3 = BaseNavigationController(rootViewController: moduleBVC)
+//            let nav4 = BaseNavigationController(rootViewController: moduleCVC)
+//            tabBarController.viewControllers = [nav1, nav2, nav3, nav4]
+            tabBarController.tabBar.backgroundColor = .white
+            tabBarController.tabBar.barTintColor = .white
+            tabBarController.tabBar.shadowImage = UIImage() //去掉tabbar顶部的细线（阴影效果）
             window?.rootViewController = tabBarController
         } else {
             let loginVC = LoginViewController()
