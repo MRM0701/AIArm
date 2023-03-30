@@ -18,13 +18,13 @@ enum API {
 extension API: TargetType {
 
     var baseURL: URL {
-        return URL(string: "<http://yourapi.com>")!
+        return URL(string: "http://10.11.3.234:8088/api/v1.0/armband_dev/")!
     }
 
     var path: String {
         switch self {
         case .login:
-            return "/login"
+            return "armband/user/login/password"
         case .getUserInfo(let userId):
             return "/user/\\(userId)"
         }
@@ -42,7 +42,10 @@ extension API: TargetType {
     var task: Task {
         switch self {
         case .login(let username, let password):
-            return .requestParameters(parameters: ["username": username, "password": password], encoding: JSONEncoding.default)
+            return .requestData(bodyData(
+                ["phone":username,
+                 "password":password
+                ]))
         case .getUserInfo:
             return .requestPlain
         }
@@ -50,6 +53,11 @@ extension API: TargetType {
 
     var headers: [String : String]? {
         return ["Content-type": "application/json"]
+    }
+    
+    private func bodyData(_ bodyDict : [String : Any]) -> Data {
+        let bodyData = try! JSONSerialization.data(withJSONObject: bodyDict, options: .prettyPrinted)
+        return bodyData
     }
 }
 
