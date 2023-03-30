@@ -1,10 +1,3 @@
-//
-//  NetworkManager.swift
-//  AIArm
-//
-//  Created by zoneyet on 2023/3/30.
-//
-
 import Moya
 import SwiftyJSON
 
@@ -13,6 +6,8 @@ let provider = MoyaProvider<API>()
 enum API {
     case login(username: String, password: String)
     case getUserInfo(userId: Int)
+    case getFamilyMembers(groupId: Int)
+    case addPatientInfo(name: String, idCardNumber: String, relation: String, illnessDesc: String, avatarUrl: String, isDefault: Bool, hospitalId: Int)
 }
 
 extension API: TargetType {
@@ -26,7 +21,11 @@ extension API: TargetType {
         case .login:
             return "armband/user/login/password"
         case .getUserInfo(let userId):
-            return "/user/\\(userId)"
+            return "/user/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\(userId)"
+        case .getFamilyMembers(let groupId):
+            return "/family/group/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\(groupId)/members"
+        case .addPatientInfo:
+            return "/patient/info"
         }
     }
 
@@ -36,6 +35,10 @@ extension API: TargetType {
             return .post
         case .getUserInfo:
             return .get
+        case .getFamilyMembers:
+            return .get
+        case .addPatientInfo:
+            return .post
         }
     }
 
@@ -48,6 +51,10 @@ extension API: TargetType {
                 ]))
         case .getUserInfo:
             return .requestPlain
+        case .getFamilyMembers(let groupId):
+            return .requestParameters(parameters: ["groupid": groupId], encoding: URLEncoding.default)
+        case .addPatientInfo(let name, let idCardNumber, let relation, let illnessDesc, let avatarUrl, let isDefault, let hospitalId):
+            return .requestParameters(parameters: ["name": name, "id_card_number": idCardNumber, "relation": relation, "illness_desc": illnessDesc, "avatar_url": avatarUrl, "is_default": isDefault, "hospital_id": hospitalId], encoding: JSONEncoding.default)
         }
     }
 
@@ -61,7 +68,7 @@ extension API: TargetType {
     }
 }
 
-//provider.request(.login(username: "yourusername", password: "yourpassword")) { result in
+//provider.request(.addPatientInfo(name: "张三", idCardNumber: "123456789012345678", relation: "父亲", illnessDesc: "感冒", avatarUrl: "<http://example.com/avatar.jpg>", isDefault: true, hospitalId: 123)) { result in
 //    switch result {
 //    case let .success(response):
 //        let data = response.data
@@ -71,4 +78,5 @@ extension API: TargetType {
 //        print(error)
 //    }
 //}
+
 

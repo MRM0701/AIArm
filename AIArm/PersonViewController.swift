@@ -17,7 +17,6 @@ class PersonViewController: UIViewController {
         button.setTitle("添加就诊人", for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(addPerson), for: .touchUpInside)
         return button
     }()
 
@@ -26,7 +25,6 @@ class PersonViewController: UIViewController {
         button.setTitle("就诊人列表", for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(showPersonList), for: .touchUpInside)
         return button
     }()
 
@@ -35,12 +33,16 @@ class PersonViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        addPersonButton.addTarget(self, action: #selector(addPerson), for: .touchUpInside)
+        personListButton.addTarget(self, action: #selector(showPersonList), for: .touchUpInside)
+
     }
 
     // MARK: - Selectors
 
     @objc func addPerson() {
         let addPersonVC = AddPersonViewController()
+        addPersonVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(addPersonVC, animated: true)
     }
 
