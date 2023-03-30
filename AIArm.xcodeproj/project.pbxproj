@@ -28,6 +28,8 @@
 		A3224E5B29D55BB40043D5D8 /* ModuleBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3224E5A29D55BB40043D5D8 /* ModuleBViewController.swift */; };
 		A3224E5D29D55BC00043D5D8 /* ModuleCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3224E5C29D55BC00043D5D8 /* ModuleCViewController.swift */; };
 		A3224E5F29D55C3F0043D5D8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3224E5E29D55C3F0043D5D8 /* NetworkManager.swift */; };
+		A3224E6129D56E360043D5D8 /* AddPersonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3224E6029D56E360043D5D8 /* AddPersonViewController.swift */; };
+		A3224E6329D56E4F0043D5D8 /* PersonListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3224E6229D56E4F0043D5D8 /* PersonListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		A3224E5A29D55BB40043D5D8 /* ModuleBViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBViewController.swift; sourceTree = "<group>"; };
 		A3224E5C29D55BC00043D5D8 /* ModuleCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleCViewController.swift; sourceTree = "<group>"; };
 		A3224E5E29D55C3F0043D5D8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A3224E6029D56E360043D5D8 /* AddPersonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonViewController.swift; sourceTree = "<group>"; };
+		A3224E6229D56E4F0043D5D8 /* PersonListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListViewController.swift; sourceTree = "<group>"; };
 		A92F7AEE7B5678649F81E8C3 /* Pods-AIArmTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIArmTests.debug.xcconfig"; path = "Target Support Files/Pods-AIArmTests/Pods-AIArmTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C7C03F18851DA44ED527D9EA /* Pods-AIArm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIArm.debug.xcconfig"; path = "Target Support Files/Pods-AIArm/Pods-AIArm.debug.xcconfig"; sourceTree = "<group>"; };
 		CE2CE792700737ECAC0F6547 /* Pods-AIArm-AIArmUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AIArm-AIArmUITests.debug.xcconfig"; path = "Target Support Files/Pods-AIArm-AIArmUITests/Pods-AIArm-AIArmUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 				A3224E5A29D55BB40043D5D8 /* ModuleBViewController.swift */,
 				A3224E5C29D55BC00043D5D8 /* ModuleCViewController.swift */,
 				A3224E5E29D55C3F0043D5D8 /* NetworkManager.swift */,
+				A3224E6029D56E360043D5D8 /* AddPersonViewController.swift */,
+				A3224E6229D56E4F0043D5D8 /* PersonListViewController.swift */,
 			);
 			path = AIArm;
 			sourceTree = "<group>";
@@ -438,6 +444,7 @@
 				A3224E2329D549A60043D5D8 /* ViewController.swift in Sources */,
 				A3224E5529D55B780043D5D8 /* BaseNavigationController.swift in Sources */,
 				A3224E4F29D55AF50043D5D8 /* BaseViewController.swift in Sources */,
+				A3224E6129D56E360043D5D8 /* AddPersonViewController.swift in Sources */,
 				A3224E5929D55BA60043D5D8 /* ModuleAViewController.swift in Sources */,
 				A3224E5729D55B980043D5D8 /* PersonViewController.swift in Sources */,
 				A3224E1F29D549A60043D5D8 /* AppDelegate.swift in Sources */,
@@ -445,6 +452,7 @@
 				A3224E5B29D55BB40043D5D8 /* ModuleBViewController.swift in Sources */,
 				A3224E5129D55B320043D5D8 /* LoginViewController.swift in Sources */,
 				A3224E2129D549A60043D5D8 /* SceneDelegate.swift in Sources */,
+				A3224E6329D56E4F0043D5D8 /* PersonListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
