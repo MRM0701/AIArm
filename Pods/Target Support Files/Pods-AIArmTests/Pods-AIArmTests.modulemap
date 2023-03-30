@@ -1,0 +1,6 @@
+framework module Pods_AIArmTests {
+  umbrella header "Pods-AIArmTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
