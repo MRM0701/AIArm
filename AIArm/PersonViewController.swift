@@ -48,6 +48,7 @@ class PersonViewController: UIViewController {
 
     @objc func showPersonList() {
         let personListVC = PersonListViewController()
+        personListVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(personListVC, animated: true)
     }
 

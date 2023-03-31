@@ -9,20 +9,24 @@ enum API {
     case login(username: String, password: String)
     case getUserInfo(userId: Int)
     case getFamilyMembers(groupId: Int)
-    case addPatientInfo(name: String, idCardNumber: String, relation: String, illnessDesc: String, avatarUrl: String, isDefault: Bool, hospitalId: Int)
+    case addPatientInfo(name: String, idCardNumber: String, relation: String, illnessDesc: String, avatarUrl: String, isDefault: Bool, hospitalId: String)
     case getGroupMembers(userId: String, groupId: String)
+    case getPatientInfoList
+    case searchAllArmbandGroup(groupId: String)
+
+
 }
 
 extension API: TargetType {
 
     var baseURL: URL {
-        return URL(string: "http://172.17.24.99:8088/api/v1.0/armband_dev/")!
+        return URL(string: "http://172.17.24.99:8088/api/v1.0/armband_dev")!
     }
 
     var path: String {
         switch self {
         case .login:
-            return "armband/user/login/password"
+            return "/armband/user/login/password"
         case .getUserInfo(let userId):
             return "/user/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\(userId)"
         case .getFamilyMembers(let groupId):
@@ -30,7 +34,11 @@ extension API: TargetType {
         case .addPatientInfo:
             return "/patient/info"
         case .getGroupMembers:
-            return "armband/group/search/all"
+            return "/armband/group/search/all"
+        case .getPatientInfoList:
+            return "/patient/info"
+        case .searchAllArmbandGroup:
+            return "/armband/group/search/all"
         }
     }
 
@@ -45,6 +53,10 @@ extension API: TargetType {
         case .addPatientInfo:
             return .post
         case .getGroupMembers:
+            return .post
+        case .getPatientInfoList:
+            return .get
+        case .searchAllArmbandGroup:
             return .post
         }
     }
@@ -68,6 +80,13 @@ extension API: TargetType {
             ["userId":userId,
              "groupId":groupId
             ]))
+        case .getPatientInfoList:
+            return .requestPlain
+        case .searchAllArmbandGroup(let groupId):
+            return .requestData(bodyData(
+            ["groupId":groupId
+            ]))
+//            return .requestParameters(parameters: ["groupId": groupId], encoding: URLEncoding.default)
         }
     }
 
