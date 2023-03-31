@@ -114,6 +114,19 @@ class LoginViewController: BaseViewController {
                 let status = jsonDic["status"] as! Int
                 //判断code等于200和status等于0
                 if code == 200 && status == 0 {
+                    //尝试读取jsondic中的data
+                    guard let data = jsonDic["data"] as? [String: Any] else {
+                        //打印data不存在
+                        print("data不存在")
+                        return
+                    }
+                    //读取data中的token
+                    let token = data["token"] as! String
+                    //读取data中的userId
+                    let userId = data["userId"] as! String
+                    //存储token和userId
+                    UserDefaults.standard.set(token, forKey: "token")
+                    UserDefaults.standard.set(userId, forKey: "userId")
                     //登录成功
                     self.loginSuccess()
                 } else {
