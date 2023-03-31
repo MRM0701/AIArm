@@ -100,6 +100,8 @@ class FamilyListViewController: BaseViewController, UICollectionViewDataSource, 
             cell.nameLabel.text = family.member.name
             return cell
         }
+    
+    
 
     }
 class FamilyCollectionViewCell: UICollectionViewCell {

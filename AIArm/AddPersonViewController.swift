@@ -952,8 +952,7 @@ import UIKit
 import SnapKit
 import SwiftyJSON
 
-class AddPersonViewController: UIViewController {
-
+class AddPersonViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource {
     // MARK: - Properties
 
     private let scrollView: UIScrollView = {
@@ -1067,6 +1066,8 @@ class AddPersonViewController: UIViewController {
     }()
     let hospitalId = "9ec744fb-fc2a-4589-94d1-5074c813bbdb"
 
+    private let relationshipOptions = ["父母", "配偶", "子女", "其他"] // 可供选择的与就诊人关系
+
     private let tapGesture: UITapGestureRecognizer = {
         let gestureRecognizer = UITapGestureRecognizer()
         return gestureRecognizer
@@ -1078,6 +1079,9 @@ class AddPersonViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureTapGesture()
+        
+        relationshipPickerView.dataSource = self
+        relationshipPickerView.delegate = self
     }
 
     func validateIDNumber(_ idNumber: String) -> Bool {
@@ -1320,5 +1324,27 @@ class AddPersonViewController: UIViewController {
         tapGesture.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(tapGesture)
     }
+    
+    // MARK: - UIPickerViewDataSource
+
+       func numberOfComponents(in pickerView: UIPickerView) -> Int {
+           return 1
+       }
+
+       func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+           return relationshipOptions.count
+       }
+
+       // MARK: - UIPickerViewDelegate
+
+       func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+           return relationshipOptions[row]
+       }
+
+       func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+           // Do something with selected relationship
+           let selectedRelationship = relationshipOptions[row]
+//           relationshipTextField.text = selectedRelationship
+       }
 }
 
