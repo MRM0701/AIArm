@@ -44,9 +44,9 @@ class MemberCell: UITableViewCell {
     }
 
     func configure(with member: Member) {
-        avatarImageView.image = UIImage(named: member.avatar)
-        identityLabel.text = member.identity
-        nameLabel.text = member.name
+        avatarImageView.image = UIImage(named: member.relativeHead)
+        identityLabel.text = member.relativeRel
+        nameLabel.text = member.relativeName
     }
 }
 
