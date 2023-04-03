@@ -20,7 +20,7 @@ enum API {
 extension API: TargetType {
 
     var baseURL: URL {
-        return URL(string: "http://172.17.24.99:8088/api/v1.0/armband_dev")!
+        return URL(string: "http://172.17.24.197:8088/api/v1.0/armband_dev")!
     }
 
     var path: String {

@@ -6,7 +6,8 @@ class MemberCell: UITableViewCell {
     private let avatarImageView = UIImageView()
     private let identityLabel = UILabel()
     private let nameLabel = UILabel()
-
+    let cRelativeNnumArray = ["1","2","3","4","5","6","7","8","9","10","11","12","0"]
+    let cRelativeArray = ["爸爸","妈妈","爷爷","奶奶","外婆","外公","哥哥","姐姐","叔叔","阿姨","伯父","伯母","监护人"]
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -18,7 +19,9 @@ class MemberCell: UITableViewCell {
             make.width.equalTo(60)
         }
         avatarImageView.backgroundColor = .red
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2 //将头像设置为圆形
+        avatarImageView.layer.cornerRadius = 30 //将头像设置为圆形
+        avatarImageView.layer.masksToBounds = true
+
 
         contentView.addSubview(identityLabel)
         identityLabel.snp.makeConstraints { (make) in
@@ -44,8 +47,12 @@ class MemberCell: UITableViewCell {
     }
 
     func configure(with member: Member) {
-        avatarImageView.image = UIImage(named: member.relativeHead)
-        identityLabel.text = member.relativeRel
+        //avatarImageView使用kingfisher加载图片
+        avatarImageView.kf.setImage(with: URL(string: member.relativeHead))
+        //从cRelativeNnumArray数组中查找member.relativeRel的下标
+        let index = cRelativeNnumArray.firstIndex(of: member.relativeRel)
+        //如果index不为nil，从cRelativeArray数组中取出下标为index的元素赋值给identityLabel.text
+        identityLabel.text = index != nil ? cRelativeArray[index!] : member.relativeRel
         nameLabel.text = member.relativeName
     }
 }
@@ -87,11 +94,21 @@ class ModuleAViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let data = response.data
                 let json = JSON(data)
                 // 解析json数据
+                //读取code字段值
+                let code = json["code"].intValue
+                //读取status字段值
+                let status = json["status"].intValue
+                //判断code等于200且status等于0
+                if code != 200 || status != 0 {
+                    print("获取成员列表失败")
+                    return
+                }
                 //读取json中的data字段值字典
                 let dataDic = json["data"].dictionaryValue
                 //读取datadic中的activateRelative数组
-                let activateRelativeArray = dataDic["activateRelative"]!.arrayValue
-                //self.members = memberArray.map { Member(avatar: $0["avatar"].stringValue, identity: $0["identity"].stringValue, name: $0["name"].stringValue) }
+                let activateRelativeArray = dataDic["activateRelative"]?.arrayValue
+                //把activateRelative数组中的每个字典转换为Member结构体并赋值给members数组
+                self.members = activateRelativeArray?.map { Member(relativeHead: $0["relativeHead"].stringValue, relativeRel: $0["relativeRel"].stringValue, relativeName: $0["relativeName"].stringValue) } ?? []
                 self.tableView.reloadData()
             case let .failure(error):
                 print(error)
